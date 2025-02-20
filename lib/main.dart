@@ -1,3 +1,4 @@
+import 'package:basic_flutter_api/pages/all_products_page.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -12,9 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Basic Flutter API",
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        
-      ),
+      home: AllProductsPage(),
     );
   }
 }
