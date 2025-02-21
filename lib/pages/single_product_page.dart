@@ -1,5 +1,6 @@
 import 'package:basic_flutter_api/api/api_service.dart';
 import 'package:basic_flutter_api/models/product_model.dart';
+import 'package:basic_flutter_api/pages/edit_product_page.dart';
 import 'package:flutter/material.dart';
 
 class SingleProductPage extends StatelessWidget {
@@ -128,6 +129,32 @@ class SingleProductPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 15),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    Colors.blueAccent,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              EditProductPage(product: product),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Update",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
                               ),
                             ],
                           ),

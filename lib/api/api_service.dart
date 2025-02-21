@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:basic_flutter_api/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-
   //Get Request//
 
   //Fetch All Products From the API
@@ -62,16 +60,47 @@ class ApiService {
       );
       if (responce.statusCode == 200 || responce.statusCode == 201) {
         // ignore: avoid_print
-        print("Responce: ${responce.body}"); // New Product Print in Debug Console
+        print(
+          "Responce: ${responce.body}",
+        ); // New Product Print in Debug Console
         ProductModel newProduct = ProductModel.fromJson(
           json.decode(responce.body),
         );
         return newProduct;
-      }else{
+      } else {
         throw Exception("Faild");
       }
     } catch (error) {
       throw Exception("Faild to Add Product");
+    }
+  }
+
+  //PUT Request
+
+  //Update a Product in the API
+  Future<ProductModel> updateProduct(int id, ProductModel product) async {
+    final String url = "https://fakestoreapi.com/products/$id";
+
+    try {
+      final response = await http.put(
+        Uri.parse(url),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(product.toJson()),
+      );
+      if (response.statusCode == 200) {
+        ProductModel updateProduct = ProductModel.fromJson(
+          jsonDecode(response.body),
+        );
+        // ignore: avoid_print
+        print(
+          "Response: ${response.body}",
+        ); //Updated Product Print in Debug Console
+        return updateProduct;
+      } else {
+        throw Exception("Fail");
+      }
+    } catch (error) {
+      throw Exception("Error: $error");
     }
   }
 }
