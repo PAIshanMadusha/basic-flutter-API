@@ -130,32 +130,63 @@ class SingleProductPage extends StatelessWidget {
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 15),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                    Colors.blueAccent,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) =>
-                                              EditProductPage(product: product),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Update",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
+                              SizedBox(
+                                height: 15,
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                        Colors.blueAccent,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder:
+                                              (context) => EditProductPage(
+                                                product: product,
+                                              ),
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      "Update",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(width: 15),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                        Colors.redAccent,
+                                      ),
+                                    ),
+                                    onPressed: () async{
+                                      await apiService.deleteProduct(product.id!);
+                                      if(context.mounted) {
+                                        Navigator.pop(context);
+                                      }
+                                    },
+                                    child: Text(
+                                      "Delete",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 15),
                             ],
                           ),
                         ),

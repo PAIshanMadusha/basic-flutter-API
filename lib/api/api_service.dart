@@ -103,4 +103,24 @@ class ApiService {
       throw Exception("Error: $error");
     }
   }
+
+  //DELETE Request
+
+  //Delete a Product from the API
+  Future<void> deleteProduct(int id) async {
+    final String url = "https://fakestoreapi.com/products/$id";
+    try {
+      final response = await http.delete(Uri.parse(url));
+      if (response.statusCode == 200) {
+        // ignore: avoid_print
+        print(
+          "Response: ${response.body}",
+        ); //Delete Product Print in Debug Console
+      } else {
+        throw Exception("Fail");
+      }
+    } catch (error) {
+      throw Exception("Error: $error");
+    }
+  }
 }
