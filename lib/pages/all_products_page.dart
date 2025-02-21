@@ -1,5 +1,6 @@
 import 'package:basic_flutter_api/api/api_service.dart';
 import 'package:basic_flutter_api/models/product_model.dart';
+import 'package:basic_flutter_api/pages/add_product_page.dart';
 import 'package:basic_flutter_api/pages/single_product_page.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,16 @@ class _AllProductsPageState extends State<AllProductsPage> {
         ),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 159, 255, 48),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddProductPage()),
+          );
+        },
+        child: Icon(Icons.add, color: Colors.white, size: 35),
+      ),
       body: Padding(
         padding: EdgeInsets.all(15),
         child: FutureBuilder<List<ProductModel>>(
@@ -54,8 +65,8 @@ class _AllProductsPageState extends State<AllProductsPage> {
                       borderRadius: BorderRadius.circular(15),
                       gradient: LinearGradient(
                         colors: [
-                          Color.fromRGBO(194, 196, 192, 1),
-                          Color.fromARGB(255, 192, 207, 180),
+                          Color.fromRGBO(232, 238, 226, 1),
+                          Color.fromARGB(255, 194, 255, 144),
                         ],
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
@@ -82,7 +93,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
                       title: Text(
                         product.title,
                         style: TextStyle(
-                          fontSize: 21,
+                          fontSize: 20,
                           // ignore: deprecated_member_use
                           color: Colors.black.withOpacity(0.7),
                           fontWeight: FontWeight.bold,
@@ -96,7 +107,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
                           Text(
                             product.category,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.blueAccent,
                             ),
@@ -104,7 +115,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
                           Text(
                             "\$ ${product.price.toStringAsFixed(2)}",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 17,
                               color: Colors.blueGrey,
                               fontWeight: FontWeight.bold,
                             ),
