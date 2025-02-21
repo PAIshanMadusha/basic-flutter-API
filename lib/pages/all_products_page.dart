@@ -1,5 +1,6 @@
 import 'package:basic_flutter_api/api/api_service.dart';
 import 'package:basic_flutter_api/models/product_model.dart';
+import 'package:basic_flutter_api/pages/single_product_page.dart';
 import 'package:flutter/material.dart';
 
 class AllProductsPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
         title: Text(
           "All Products",
           style: TextStyle(
-            fontSize: 40,
+            fontSize: 35,
             fontWeight: FontWeight.bold,
             color: Color.fromARGB(255, 155, 175, 138),
           ),
@@ -53,7 +54,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
                       borderRadius: BorderRadius.circular(15),
                       gradient: LinearGradient(
                         colors: [
-                          Color.fromARGB(255, 194, 196, 192),
+                          Color.fromRGBO(194, 196, 192, 1),
                           Color.fromARGB(255, 192, 207, 180),
                         ],
                         begin: Alignment.centerLeft,
@@ -81,7 +82,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
                       title: Text(
                         product.title,
                         style: TextStyle(
-                          fontSize: 23,
+                          fontSize: 21,
                           // ignore: deprecated_member_use
                           color: Colors.black.withOpacity(0.7),
                           fontWeight: FontWeight.bold,
@@ -110,6 +111,16 @@ class _AllProductsPageState extends State<AllProductsPage> {
                           ),
                         ],
                       ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) =>
+                                    SingleProductPage(productId: product.id!),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
